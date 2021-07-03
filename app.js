@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
   cardArray.sort(() => 0.5 - Math.random());
 
   const grid = document.querySelector('.grid');
-  const resultDisplay = document.querySelector('#result');
+  const score = document.querySelector('#score');
+  const status = document.querySelector('#status');
+
   let cardsChosen = [];
   let cardsChosenId = [];
   let cardsWon = [];
@@ -78,18 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cardsChosen[0] === cardsChosen[1]) {
       alert('You found a match');
       cards[optionOneId].setAttribute('src', 'images/white.png');
+      cards[optionOneId].style.pointerEvents = 'none';
       cards[optionTwoId].setAttribute('src', 'images/white.png');
+      cards[optionTwoId].style.pointerEvents = 'none';
       cardsWon.push(cardsChosen);
     } else {
       cards[optionOneId].setAttribute('src', 'images/blank.png');
+      cards[optionOneId].style.pointerEvents = 'auto';
       cards[optionTwoId].setAttribute('src', 'images/blank.png');
+      cards[optionTwoId].style.pointerEvents = 'auto';
       alert('Wrong match, try again');
     }
     cardsChosen = []; // clear array for next flip
     cardsChosenId = []; // clear array for next flip
-    resultDisplay.textContent = cardsWon.length;
+    score.textContent = cardsWon.length;
     if (cardsWon.length === cardArray.length / 2) {
-      resultDisplay.textContent = 'Congratulations! You found them all!';
+      document.querySelector('#result').textContent =
+        'Congratulations! You found all matches!';
     }
   }
   // flip your card
@@ -98,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cardsChosen.push(cardArray[cardId].name);
     cardsChosenId.push(cardId);
     this.setAttribute('src', cardArray[cardId].img);
+    this.style.pointerEvents = 'none';
     if (cardsChosen.length === 2) {
       setTimeout(checkForMatch, 500);
     }
