@@ -51,11 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   ];
 
-  cardArray.sort(() => 0.5 - Math.random());
+  cardArray.sort(() => 0.5 - Math.random()); // shuffle cards randomly
 
   const grid = document.querySelector('.grid');
   const score = document.querySelector('#score');
-  const status = document.querySelector('#status');
+  const result = document.querySelector('#result');
 
   let cardsChosen = [];
   let cardsChosenId = [];
@@ -95,11 +95,18 @@ document.addEventListener('DOMContentLoaded', () => {
     cardsChosenId = []; // clear array for next flip
     score.textContent = cardsWon.length;
     if (cardsWon.length === cardArray.length / 2) {
-      document.querySelector('#result').textContent =
-        'Congratulations! You found all matches!';
+      result.innerHTML = '<b>Congratulations!</b>You found all matches!';
+      let newGame = document.createElement('button');
+      newGame.className = 'new-game';
+      newGame.innerHTML = 'New Game';
+      newGame.onclick = () => {
+        location.reload();
+      };
+      result.appendChild(newGame);
     }
   }
-  // flip your card
+
+  // flip card
   function flipCard() {
     let cardId = this.getAttribute('data-id');
     cardsChosen.push(cardArray[cardId].name);
@@ -107,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     this.setAttribute('src', cardArray[cardId].img);
     this.style.pointerEvents = 'none';
     if (cardsChosen.length === 2) {
-      setTimeout(checkForMatch, 500);
+      setTimeout(checkForMatch, 100);
     }
   }
 

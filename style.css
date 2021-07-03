@@ -1,4 +1,9 @@
-html {
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
   font-size: 10px;
 }
 .app {
@@ -6,21 +11,33 @@ html {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  height: 80vh;
+  margin: auto;
 }
 .result {
   font-size: 2rem;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
 }
-
+.new-game {
+  margin-top: 15%;
+}
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.3rem;
   /* grid-template-rows: repeat(4, 1fr); */
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (min-width: 750px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     /* grid-template-rows: repeat(4, 1fr); */
+  }
+  .result {
+    font-size: 3rem;
   }
 }
