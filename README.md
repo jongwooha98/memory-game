@@ -1,2 +1,3 @@
-# memory-game
- Memory Game [App](https://jongwooha98.github.io/memory-game)
+# Memory Game
+
+Play [Memory Game!](https://jongwooha98.github.io/memory-game)
