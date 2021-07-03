@@ -1,0 +1,9 @@
+html {
+  font-size: 10px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 30rem;
+  width: 40rem;
+}
